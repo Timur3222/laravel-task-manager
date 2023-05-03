@@ -15,5 +15,17 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return inertia('Index');
+    return Inertia::render('Index');
+});
+
+Route::get('/tasks', function () {
+    return Inertia::render('Tasks');
+});
+
+Route::get('/statuses', function () {
+    return Inertia::render('Statuses');
+});
+
+Route::get('/marks', function () {
+    return Inertia::render('Marks');
 });
