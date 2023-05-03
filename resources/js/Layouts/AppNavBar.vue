@@ -23,8 +23,12 @@ import Button from "primevue/button";
                     </Link>
                 </div>
                 <div class="flex gap-3">
-                    <Button>Вход</Button>
-                    <Button>Регистрация</Button>
+                    <Link href="/login">
+                        <Button>Вход</Button>
+                    </Link>
+                    <Link href="/register">
+                        <Button>Регистрация</Button>
+                    </Link>
                 </div>
             </div>
         </header>

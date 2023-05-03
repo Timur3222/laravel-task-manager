@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,3 +30,10 @@ Route::get('/statuses', function () {
 Route::get('/marks', function () {
     return Inertia::render('Marks');
 });
+
+Route::get('/login', function () {
+  return Inertia::render('Login');
+});
+
+Route::get('/register', [UserController::class, 'create']);
+
