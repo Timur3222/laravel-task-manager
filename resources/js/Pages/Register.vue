@@ -22,7 +22,7 @@ const form = useForm({
 
 <template>
     <form
-        class="max-w-md flex-grow space-y-5 rounded-md bg-white p-6 shadow-md"
+        class="max-w-md flex-grow space-y-8 rounded-md bg-white p-6 shadow-md"
         @submit.prevent="form.post('/users')"
     >
         <div class="flex justify-center">
@@ -33,23 +33,29 @@ const form = useForm({
             </Link>
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="relative flex flex-col gap-1">
             <label for="name" class="text-gray-600">Имя</label>
             <InputText id="name" type="text" v-model="form.name" />
-            <span v-if="form.errors.name" class="text-xs text-red-500">{{
-                form.errors.name
-            }}</span>
+            <span
+                v-if="form.errors.name"
+                class="absolute bottom-[-16px] text-xs text-red-500"
+            >
+                {{ form.errors.name }}
+            </span>
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="relative flex flex-col gap-1">
             <label for="email" class="text-gray-600">E-mail</label>
             <InputText id="email" type="text" v-model="form.email" />
-            <span v-if="form.errors.email" class="text-xs text-red-500">{{
-                form.errors.email
-            }}</span>
+            <span
+                v-if="form.errors.email"
+                class="absolute bottom-[-16px] text-xs text-red-500"
+            >
+                {{ form.errors.email }}
+            </span>
         </div>
 
-        <div class="flex flex-col gap-1">
+        <div class="relative flex flex-col gap-1">
             <label for="password" class="text-gray-600">Пароль</label>
             <Password
                 id="password"
@@ -59,9 +65,12 @@ const form = useForm({
                 toggleMask
                 :input-style="{ width: '100%' }"
             />
-            <span v-if="form.errors.password" class="text-xs text-red-500">{{
-                form.errors.password
-            }}</span>
+            <span
+                v-if="form.errors.password"
+                class="absolute bottom-[-16px] text-xs text-red-500"
+            >
+                {{ form.errors.password }}
+            </span>
         </div>
 
         <div class="flex flex-col gap-1">
@@ -78,16 +87,18 @@ const form = useForm({
             />
         </div>
 
-        <div class="flex justify-center">
-            <Button type="submit" :disabled="form.processing"
-                >Зарегистрироваться</Button
-            >
-        </div>
+        <div class="space-y-3">
+            <div class="flex justify-center">
+                <Button type="submit" :disabled="form.processing"
+                    >Зарегистрироваться</Button
+                >
+            </div>
 
-        <div class="flex justify-center">
-            <Link href="/login">
-                <Button label="Уже зарегистрированы?" link />
-            </Link>
+            <div class="flex justify-center">
+                <Link href="/login">
+                    <Button label="Уже зарегистрированы?" link />
+                </Link>
+            </div>
         </div>
     </form>
 </template>
