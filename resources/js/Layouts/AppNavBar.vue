@@ -8,7 +8,7 @@ import Button from "primevue/button";
             <div
                 class="mx-auto flex max-w-screen-xl items-center justify-between"
             >
-                <Link href="/" class="text-xl font-semibold"
+                <Link href="/" class="text-xl font-semibold text-gray-600"
                     >Менеджер задач</Link
                 >
                 <div class="flex gap-3">

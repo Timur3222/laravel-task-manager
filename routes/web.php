@@ -32,8 +32,9 @@ Route::get('/marks', function () {
 });
 
 Route::get('/login', function () {
-  return Inertia::render('Login');
+    return Inertia::render('Login');
 });
 
 Route::get('/register', [UserController::class, 'create']);
 
+Route::post('/users', [UserController::class, 'store']);
