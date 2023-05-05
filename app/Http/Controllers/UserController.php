@@ -9,11 +9,6 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-  public function create()
-  {
-    return Inertia::render('Register');
-  }
-
   public function store(Request $request)
   {
     $formFields = $request->validate([
@@ -28,6 +23,32 @@ class UserController extends Controller
 
     auth()->login($user);
 
-    return redirect('/')->with('message', 'Успешная регистрация');
+    return redirect('/');
+  }
+
+  public function logout(Request $request)
+  {
+    auth()->logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+  }
+
+  public function authenticate(Request $request)
+  {
+    $formFields = $request->validate([
+      'email' => ['required', 'email'],
+      'password' => 'required'
+    ]);
+
+    if (auth()->attempt($formFields)) {
+      $request->session()->regenerate();
+
+      return redirect('/');
+    }
+
+    return back()->withErrors(['email' => 'Неверный логин или пароль.']);
   }
 }

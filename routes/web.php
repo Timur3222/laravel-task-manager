@@ -4,17 +4,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return Inertia::render('Index');
 });
@@ -33,8 +22,16 @@ Route::get('/marks', function () {
 
 Route::get('/login', function () {
     return Inertia::render('Login');
-});
+})->middleware('guest');
 
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', function () {
+    return Inertia::render('Register');
+})->middleware('guest');
 
-Route::post('/users', [UserController::class, 'store']);
+//POST methods
+
+Route::post('/users/register', [UserController::class, 'store']);
+
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+Route::post('/logout', [UserController::class, 'logout']);

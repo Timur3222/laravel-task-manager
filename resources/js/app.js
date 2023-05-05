@@ -3,6 +3,7 @@ import { createInertiaApp, Link } from '@inertiajs/vue3'
 import PrimeVue from 'primevue/config';
 import "primevue/resources/themes/saga-green/theme.css";
 import "primevue/resources/primevue.min.css";
+import 'primeicons/primeicons.css';
 
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),

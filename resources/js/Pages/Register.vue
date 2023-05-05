@@ -23,7 +23,7 @@ const form = useForm({
 <template>
     <form
         class="max-w-md flex-grow space-y-8 rounded-md bg-white p-6 shadow-md"
-        @submit.prevent="form.post('/users')"
+        @submit.prevent="form.post('/users/register')"
     >
         <div class="flex justify-center">
             <Link href="/">
@@ -38,7 +38,7 @@ const form = useForm({
             <InputText id="name" type="text" v-model="form.name" />
             <span
                 v-if="form.errors.name"
-                class="absolute bottom-[-16px] text-xs text-red-500"
+                class="absolute bottom-[-20px] text-xs text-red-500"
             >
                 {{ form.errors.name }}
             </span>
@@ -49,7 +49,7 @@ const form = useForm({
             <InputText id="email" type="text" v-model="form.email" />
             <span
                 v-if="form.errors.email"
-                class="absolute bottom-[-16px] text-xs text-red-500"
+                class="absolute bottom-[-20px] text-xs text-red-500"
             >
                 {{ form.errors.email }}
             </span>
@@ -67,7 +67,7 @@ const form = useForm({
             />
             <span
                 v-if="form.errors.password"
-                class="absolute bottom-[-16px] text-xs text-red-500"
+                class="absolute bottom-[-20px] text-xs text-red-500"
             >
                 {{ form.errors.password }}
             </span>

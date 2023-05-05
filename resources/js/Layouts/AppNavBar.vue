@@ -1,5 +1,9 @@
 <script setup>
 import Button from "primevue/button";
+import { usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
+
+const authUser = computed(() => usePage().props.authUser);
 </script>
 
 <template>
@@ -22,12 +26,21 @@ import Button from "primevue/button";
                         <Button label="Метки" link />
                     </Link>
                 </div>
-                <div class="flex gap-3">
+                <div v-if="!authUser" class="flex gap-3">
                     <Link href="/login">
                         <Button>Вход</Button>
                     </Link>
                     <Link href="/register">
                         <Button>Регистрация</Button>
+                    </Link>
+                </div>
+                <div v-else class="flex items-center gap-5">
+                    <div class="space-x-2 text-gray-600">
+                        <span class="pi pi-user"></span>
+                        <span>{{ authUser.name }}</span>
+                    </div>
+                    <Link href="/logout" method="post">
+                        <Button>Выйти</Button>
                     </Link>
                 </div>
             </div>
