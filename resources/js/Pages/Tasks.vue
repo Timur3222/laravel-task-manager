@@ -1,13 +1,5 @@
-<script>
-import AppNavBar from "@/Layouts/AppNavBar.vue";
-
-export default {
-    layout: AppNavBar,
-};
-</script>
-
 <script setup></script>
 
 <template>
-    <div>Tasks</div>
+    <h1 class="text-4xl font-semibold text-gray-600">Задачи</h1>
 </template>

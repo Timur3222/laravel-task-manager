@@ -1,30 +1,37 @@
-import { createApp, h } from 'vue'
-import { createInertiaApp, Link } from '@inertiajs/vue3'
-import PrimeVue from 'primevue/config';
+import { createApp, h } from "vue";
+import { createInertiaApp, Link } from "@inertiajs/vue3";
+import PrimeVue from "primevue/config";
 import "primevue/resources/themes/saga-green/theme.css";
 import "primevue/resources/primevue.min.css";
-import 'primeicons/primeicons.css';
+import "primeicons/primeicons.css";
+import ToastService from "primevue/toastservice";
+import AppNavBar from "@/Layouts/AppNavBar.vue";
 
 createInertiaApp({
-  resolve: name => require(`./Pages/${name}`),
-  setup({ el, App, props, plugin }) {
-    createApp({ render: () => h(App, props) })
-      .use(plugin)
-      .use(PrimeVue)
-      .component('Link', Link)
-      .mount(el)
-  },
-  progress: {
-    // The delay after which the progress bar will appear, in milliseconds...
-    delay: 250,
+    resolve: (name) => {
+        let page = require(`./Pages/${name}`);
+        page.default.layout = page.default.layout || AppNavBar;
+        return page;
+    },
+    setup({ el, App, props, plugin }) {
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(PrimeVue)
+            .use(ToastService)
+            .component("Link", Link)
+            .mount(el);
+    },
+    progress: {
+        // The delay after which the progress bar will appear, in milliseconds...
+        delay: 250,
 
-    // The color of the progress bar...
-    color: '#4CAF50',
+        // The color of the progress bar...
+        color: "#4CAF50",
 
-    // Whether to include the default NProgress styles...
-    includeCSS: true,
+        // Whether to include the default NProgress styles...
+        includeCSS: true,
 
-    // Whether the NProgress spinner will be shown...
-    showSpinner: true,
-  },
-})
+        // Whether the NProgress spinner will be shown...
+        showSpinner: true,
+    },
+});

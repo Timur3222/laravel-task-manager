@@ -8,9 +8,8 @@ export default {
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import InputText from "primevue/inputtext";
-import Password from "primevue/password";
 import Button from "primevue/button";
+import InputWithLabel from "@/Components/InputWithLabel.vue";
 
 const form = useForm({
     name: null,
@@ -33,59 +32,37 @@ const form = useForm({
             </Link>
         </div>
 
-        <div class="relative flex flex-col gap-1">
-            <label for="name" class="text-gray-600">Имя</label>
-            <InputText id="name" type="text" v-model="form.name" />
-            <span
-                v-if="form.errors.name"
-                class="absolute bottom-[-20px] text-xs text-red-500"
-            >
-                {{ form.errors.name }}
-            </span>
-        </div>
+        <InputWithLabel
+            v-model="form.name"
+            inputId="name"
+            :error="form.errors.name"
+        >
+            Имя
+        </InputWithLabel>
 
-        <div class="relative flex flex-col gap-1">
-            <label for="email" class="text-gray-600">E-mail</label>
-            <InputText id="email" type="text" v-model="form.email" />
-            <span
-                v-if="form.errors.email"
-                class="absolute bottom-[-20px] text-xs text-red-500"
-            >
-                {{ form.errors.email }}
-            </span>
-        </div>
+        <InputWithLabel
+            v-model="form.email"
+            inputId="email"
+            :error="form.errors.email"
+        >
+            E-mail
+        </InputWithLabel>
 
-        <div class="relative flex flex-col gap-1">
-            <label for="password" class="text-gray-600">Пароль</label>
-            <Password
-                id="password"
-                v-model="form.password"
-                :inputProps="{ name: 'password' }"
-                :feedback="false"
-                toggleMask
-                :input-style="{ width: '100%' }"
-            />
-            <span
-                v-if="form.errors.password"
-                class="absolute bottom-[-20px] text-xs text-red-500"
-            >
-                {{ form.errors.password }}
-            </span>
-        </div>
+        <InputWithLabel
+            v-model="form.password"
+            inputId="password"
+            :password="true"
+        >
+            Пароль
+        </InputWithLabel>
 
-        <div class="flex flex-col gap-1">
-            <label for="password_confirmation" class="text-gray-600"
-                >Подтвердите пароль</label
-            >
-            <Password
-                id="password_confirmation"
-                v-model="form.password_confirmation"
-                :inputProps="{ name: 'password_confirmation' }"
-                :feedback="false"
-                toggleMask
-                :input-style="{ width: '100%' }"
-            />
-        </div>
+        <InputWithLabel
+            v-model="form.password_confirmation"
+            inputId="password_confirmation"
+            :password="true"
+        >
+            Подтвердите пароль
+        </InputWithLabel>
 
         <div class="space-y-3">
             <div class="flex justify-center">

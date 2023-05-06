@@ -1,9 +1,17 @@
-<script>
-import AppNavBar from "@/Layouts/AppNavBar.vue";
+<script setup>
+import { usePage } from "@inertiajs/vue3";
+import { useToast } from "primevue/usetoast";
 
-export default {
-    layout: AppNavBar,
-};
+const toast = useToast();
+const message = usePage().props.flash.message;
+
+if (message) {
+    toast.add({
+        severity: "success",
+        detail: message,
+        life: 3000,
+    });
+}
 </script>
 
 <template>

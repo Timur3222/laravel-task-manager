@@ -2,6 +2,7 @@
 import Button from "primevue/button";
 import { usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
+import Toast from "primevue/toast";
 
 const authUser = computed(() => usePage().props.authUser);
 </script>
@@ -48,5 +49,7 @@ const authUser = computed(() => usePage().props.authUser);
         <div class="mx-auto max-w-screen-xl py-10">
             <slot />
         </div>
+
+        <Toast />
     </main>
 </template>

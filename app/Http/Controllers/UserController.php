@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +22,7 @@ class UserController extends Controller
 
     auth()->login($user);
 
-    return redirect('/');
+    return redirect('/')->with('message', 'Успешная регистрация');
   }
 
   public function logout(Request $request)

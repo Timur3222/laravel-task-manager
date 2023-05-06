@@ -1,13 +1,5 @@
-<script>
-import AppNavBar from "@/Layouts/AppNavBar.vue";
-
-export default {
-    layout: AppNavBar,
-};
-</script>
-
 <script setup></script>
 
 <template>
-    <div>Marks</div>
+    <h1 class="text-4xl font-semibold text-gray-600">Метки</h1>
 </template>
