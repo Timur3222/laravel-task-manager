@@ -7,7 +7,7 @@ import InputWithLabel from "@/Components/InputWithLabel.vue";
 const props = defineProps({ status: Object });
 
 const form = useForm({
-    name: props.status.name || null,
+    name: props.status?.name || null,
 });
 </script>
 
