@@ -44,10 +44,21 @@ class StatusController extends Controller
       'name' => ['required', 'min:3', Rule::unique('statuses', 'name')],
     ]);
 
-    $status = Status::findOrFail($id);
+    $status = Status::find($id);
     $status->name = $formFields['name'];
     $status->save();
 
     return redirect('/statuses')->with('message', 'Статус успешно обновлен');
+  }
+
+  public function delete($id)
+  {
+    $status = Status::find($id);
+
+    if ($status) {
+      $status->delete();
+    }
+
+    return back()->with('message', 'Статус успешно удален');
   }
 }

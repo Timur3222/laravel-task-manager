@@ -40,9 +40,9 @@ const form = useForm({
 
         <InputWithLabel
             v-model="form.password"
+            type="password"
             inputId="password"
             :error="form.errors.password"
-            :password="true"
         >
             Пароль
         </InputWithLabel>

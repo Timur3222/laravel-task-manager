@@ -7,17 +7,17 @@ import dayjs from "dayjs";
 import Title from "@/Components/Title.vue";
 import Dialog from "primevue/dialog";
 
-defineProps({ statuses: Array });
+defineProps({ marks: Array });
 
 const toast = useToast();
 const message = computed(() => usePage().props.flash.message);
 const authUser = usePage().props.authUser;
 
 const dialogVisible = ref(false);
-const statusToDelete = ref(null);
+const markToDelete = ref(null);
 
-const onDeleteClick = (status) => {
-    if (status.author_id !== authUser.id) {
+const onDeleteClick = (mark) => {
+    if (mark.author_id !== authUser.id) {
         toast.add({
             severity: "error",
             detail: "У вас нет прав на это действие",
@@ -25,7 +25,7 @@ const onDeleteClick = (status) => {
         });
     } else {
         dialogVisible.value = true;
-        statusToDelete.value = status.id;
+        markToDelete.value = mark.id;
     }
 };
 
@@ -49,38 +49,40 @@ if (message.value) {
 </script>
 
 <template>
-    <Title>Статусы</Title>
+    <Title>Метки</Title>
 
-    <Link v-if="authUser" href="/statuses/create" class="mb-6 block w-fit">
-        <Button>Создать статус</Button>
+    <Link v-if="authUser" href="/marks/create" class="mb-6 block w-fit">
+        <Button>Создать метку</Button>
     </Link>
 
-    <div v-if="statuses.length">
+    <div v-if="marks.length">
         <div
-            class="mb-2 grid grid-cols-[100px_minmax(0,_1fr)_minmax(0,_1fr)] border-b-2 border-gray-400 font-semibold text-gray-600"
+            class="mb-2 grid grid-cols-[100px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b-2 border-gray-400 font-semibold text-gray-600"
         >
             <div>ID</div>
             <div>Имя</div>
+            <div>Описание</div>
             <div>Дата создания</div>
         </div>
         <div
-            v-for="(status, i) in statuses"
+            v-for="(mark, i) in marks"
             :key="i"
-            class="mb-4 grid grid-cols-[100px_minmax(0,_1fr)_minmax(0,_1fr)] border-b border-dashed border-gray-300 text-gray-600"
+            class="mb-4 grid grid-cols-[100px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b border-dashed border-gray-300 text-gray-600"
         >
-            <div>{{ status.id }}</div>
-            <div>{{ status.name }}</div>
+            <div>{{ mark.id }}</div>
+            <div>{{ mark.name }}</div>
+            <div class="pr-3">{{ mark.description }}</div>
             <div class="flex gap-24">
                 <span>
-                    {{ dayjs(status.created_at).format("DD.MM.YYYY") }}
+                    {{ dayjs(mark.created_at).format("DD.MM.YYYY") }}
                 </span>
                 <div v-if="authUser">
-                    <Link :href="`/statuses/${status.id}/edit`">
+                    <Link :href="`/marks/${mark.id}/edit`">
                         <span
                             class="pi pi-file-edit mr-3 hover:text-main"
                         ></span>
                     </Link>
-                    <button type="button" @click="onDeleteClick(status)">
+                    <button type="button" @click="onDeleteClick(mark)">
                         <span class="pi pi-trash hover:text-red-500"></span>
                     </button>
                 </div>
@@ -95,9 +97,9 @@ if (message.value) {
         header="Подтвердите действие"
         :style="{ width: '20vw' }"
     >
-        <p>Удалить статус?</p>
+        <p>Удалить метку?</p>
         <template #footer>
-            <Link :href="`/statuses/${statusToDelete}`" method="delete">
+            <Link :href="`/marks/${markToDelete}`" method="delete">
                 <Button
                     label="Удалить"
                     icon="pi pi-check"

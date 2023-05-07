@@ -25,7 +25,7 @@ const form = useForm({
             v-model="form.name"
             inputId="name"
             :error="form.errors.name"
-            class="mb-8 max-w-[300px]"
+            class="mb-8 max-w-[400px]"
         >
             Имя
         </InputWithLabel>

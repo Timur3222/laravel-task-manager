@@ -5,12 +5,12 @@ import "primevue/resources/themes/saga-green/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import ToastService from "primevue/toastservice";
-import AppNavBar from "@/Layouts/AppNavBar.vue";
+import MainLayout from "@/Layouts/MainLayout.vue";
 
 createInertiaApp({
     resolve: (name) => {
         let page = require(`./Pages/${name}`);
-        page.default.layout = page.default.layout || AppNavBar;
+        page.default.layout = page.default.layout || MainLayout;
         return page;
     },
     setup({ el, App, props, plugin }) {

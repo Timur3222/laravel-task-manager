@@ -50,16 +50,16 @@ const form = useForm({
 
         <InputWithLabel
             v-model="form.password"
+            type="password"
             inputId="password"
-            :password="true"
         >
             Пароль
         </InputWithLabel>
 
         <InputWithLabel
             v-model="form.password_confirmation"
+            type="password"
             inputId="password_confirmation"
-            :password="true"
         >
             Подтвердите пароль
         </InputWithLabel>
