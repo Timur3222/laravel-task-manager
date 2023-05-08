@@ -1,10 +1,11 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusController;
-use App\Http\Controllers\MarkController;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
   return Inertia::render('Index');
@@ -34,9 +35,9 @@ Route::get('/statuses/create', function () {
   return Inertia::render('Statuses/Form');
 })->middleware('auth');
 
-Route::get('/statuses/{id}/edit', [StatusController::class, 'edit'])->middleware('auth');
-
 Route::post('/statuses/store', [StatusController::class, 'store']);
+
+Route::get('/statuses/{id}/edit', [StatusController::class, 'edit'])->middleware('auth');
 
 Route::patch('/statuses/{id}/update', [StatusController::class, 'update'])->middleware('auth');
 
@@ -50,9 +51,9 @@ Route::get('/marks/create', function () {
   return Inertia::render('Marks/Form');
 })->middleware('auth');
 
-Route::get('/marks/{id}/edit', [MarkController::class, 'edit'])->middleware('auth');
-
 Route::post('/marks/store', [MarkController::class, 'store']);
+
+Route::get('/marks/{id}/edit', [MarkController::class, 'edit'])->middleware('auth');
 
 Route::patch('/marks/{id}/update', [MarkController::class, 'update'])->middleware('auth');
 
@@ -60,6 +61,16 @@ Route::delete('/marks/{id}', [MarkController::class, 'delete'])->middleware('aut
 
 //tasks
 
-Route::get('/tasks', function () {
-  return Inertia::render('Tasks');
-});
+Route::get('/tasks', [TaskController::class, 'index']);
+
+Route::get('/tasks/create', [TaskController::class, 'create'])->middleware('auth');
+
+Route::get('/tasks/{id}', [TaskController::class, 'show']);
+
+Route::post('/tasks/store', [TaskController::class, 'store']);
+
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware('auth');
+
+Route::patch('/tasks/{id}/update', [TaskController::class, 'update'])->middleware('auth');
+
+Route::delete('/tasks/{id}', [TaskController::class, 'delete'])->middleware('auth');

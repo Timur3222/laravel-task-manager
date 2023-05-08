@@ -53,7 +53,7 @@ const authUser = computed(() => usePage().props.authUser);
     <footer>
         <div class="flex items-center justify-center gap-2 p-4 text-gray-600">
             <span>Тимурыч © 2023</span>
-            <a href="https://github.com/Timur3222" target="_blank">
+            <a href="https://github.com/Timur3222/laravel-task-manager" target="_blank">
                 <span class="pi pi-github hover:text-main"></span>
             </a>
         </div>

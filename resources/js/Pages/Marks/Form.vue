@@ -16,6 +16,7 @@ const form = useForm({
     <Title>{{ mark ? "Редактировать метку" : "Создать метку" }}</Title>
 
     <form
+        class="space-y-8"
         @submit.prevent="
             mark
                 ? form.patch(`/marks/${mark.id}/update`)
@@ -26,7 +27,7 @@ const form = useForm({
             v-model="form.name"
             inputId="name"
             :error="form.errors.name"
-            class="mb-8 max-w-[400px]"
+            class="max-w-[400px]"
         >
             Имя
         </InputWithLabel>
@@ -36,7 +37,7 @@ const form = useForm({
             type="textarea"
             inputId="description"
             :error="form.errors.description"
-            class="mb-8 max-w-[400px]"
+            class="max-w-[400px]"
         >
             Описание
         </InputWithLabel>

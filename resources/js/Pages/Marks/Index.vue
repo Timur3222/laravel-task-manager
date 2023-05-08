@@ -57,7 +57,7 @@ if (message.value) {
 
     <div v-if="marks.length">
         <div
-            class="mb-2 grid grid-cols-[100px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b-2 border-gray-400 font-semibold text-gray-600"
+            class="mb-2 grid grid-cols-[40px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b-2 border-gray-400 font-semibold text-gray-600"
         >
             <div>ID</div>
             <div>Имя</div>
@@ -67,7 +67,7 @@ if (message.value) {
         <div
             v-for="(mark, i) in marks"
             :key="i"
-            class="mb-4 grid grid-cols-[100px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b border-dashed border-gray-300 text-gray-600"
+            class="mb-4 grid grid-cols-[40px_minmax(0,_200px)_minmax(0,_1fr)_minmax(0,_280px)] border-b border-dashed border-gray-300 text-gray-600"
         >
             <div>{{ mark.id }}</div>
             <div>{{ mark.name }}</div>
