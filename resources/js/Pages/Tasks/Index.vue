@@ -164,7 +164,7 @@ if (message.value) {
         </div>
     </div>
 
-    <div v-if="pageLinks.length > 3" class="mt-7 flex justify-end gap-2">
+    <div v-if="pageLinks.length > 3" class="mt-7 flex justify-center gap-2">
         <Link
             v-for="(link, i) in pageLinks"
             :key="i"
