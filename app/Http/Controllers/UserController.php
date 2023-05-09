@@ -11,7 +11,7 @@ class UserController extends Controller
   public function store(Request $request)
   {
     $formFields = $request->validate([
-      'name' => ['required', 'min:3'],
+      'name' => ['required', 'min:3', 'max:25'],
       'email' => ['required', 'email', Rule::unique('users', 'email')],
       'password' => 'required|confirmed|min:6'
     ]);
@@ -38,7 +38,7 @@ class UserController extends Controller
   public function authenticate(Request $request)
   {
     $formFields = $request->validate([
-      'email' => ['required', 'email'],
+      'email' => 'required',
       'password' => 'required'
     ]);
 
