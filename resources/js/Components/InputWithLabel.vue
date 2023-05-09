@@ -3,7 +3,7 @@ import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Textarea from "primevue/textarea";
 
-defineProps({
+const props = defineProps({
     modelValue: String,
     type: {
         type: String,
@@ -25,14 +25,14 @@ const emit = defineEmits(["update:modelValue"]);
             v-if="type === 'text'"
             :id="inputId"
             type="text"
-            v-model="modelValue"
+            :value="modelValue"
             :class="{ 'p-invalid': error }"
             @update:modelValue="emit('update:modelValue', $event)"
         />
         <Password
             v-if="type === 'password'"
             :id="inputId"
-            v-model="modelValue"
+            :value="modelValue"
             :inputProps="{ name: inputId }"
             :feedback="false"
             toggleMask
@@ -43,7 +43,7 @@ const emit = defineEmits(["update:modelValue"]);
         <Textarea
             v-if="type === 'textarea'"
             :id="inputId"
-            v-model="modelValue"
+            :value="modelValue"
             autoResize
             rows="5"
             cols="30"
