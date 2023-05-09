@@ -168,7 +168,7 @@ if (message.value) {
         <Link
             v-for="(link, i) in pageLinks"
             :key="i"
-            :href="link.url"
+            :href="link.url || ''"
             :class="{ hidden: !link.url }"
         >
             <Button
