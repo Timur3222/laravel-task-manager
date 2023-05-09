@@ -41,7 +41,7 @@ Route::get('/statuses/{id}/edit', [StatusController::class, 'edit'])->middleware
 
 Route::patch('/statuses/{id}/update', [StatusController::class, 'update'])->middleware('auth');
 
-Route::delete('/statuses/{id}', [StatusController::class, 'delete'])->middleware('auth');
+Route::delete('/statuses/{id}', [StatusController::class, 'destroy'])->middleware('auth');
 
 //marks
 
@@ -57,7 +57,7 @@ Route::get('/marks/{id}/edit', [MarkController::class, 'edit'])->middleware('aut
 
 Route::patch('/marks/{id}/update', [MarkController::class, 'update'])->middleware('auth');
 
-Route::delete('/marks/{id}', [MarkController::class, 'delete'])->middleware('auth');
+Route::delete('/marks/{id}', [MarkController::class, 'destroy'])->middleware('auth');
 
 //tasks
 
@@ -73,4 +73,4 @@ Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware('aut
 
 Route::patch('/tasks/{id}/update', [TaskController::class, 'update'])->middleware('auth');
 
-Route::delete('/tasks/{id}', [TaskController::class, 'delete'])->middleware('auth');
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->middleware('auth');

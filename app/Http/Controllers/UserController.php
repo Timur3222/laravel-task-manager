@@ -42,7 +42,9 @@ class UserController extends Controller
       'password' => 'required'
     ]);
 
-    if (auth()->attempt($formFields)) {
+    $remember_me = $request->input('remember_me');
+
+    if (auth()->attempt($formFields, $remember_me)) {
       $request->session()->regenerate();
 
       return redirect('/');

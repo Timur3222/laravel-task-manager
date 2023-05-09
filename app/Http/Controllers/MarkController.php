@@ -19,7 +19,7 @@ class MarkController extends Controller
   public function store(Request $request)
   {
     $formFields = $request->validate([
-      'name' => ['required', 'min:3', Rule::unique('marks', 'name')],
+      'name' => ['required', 'min:3', 'max:30', Rule::unique('marks', 'name')],
       'description' => ['required', 'min:6'],
     ]);
 
@@ -43,7 +43,7 @@ class MarkController extends Controller
   public function update(Request $request, $id)
   {
     $formFields = $request->validate([
-      'name' => ['required', 'min:3'],
+      'name' => ['required', 'min:3', 'max:30'],
       'description' => ['required', 'min:6'],
     ]);
 
@@ -55,7 +55,7 @@ class MarkController extends Controller
     return redirect('/marks')->with('message', 'Метка успешно обновлена');
   }
 
-  public function delete($id)
+  public function destroy($id)
   {
     $mark = Mark::find($id);
 

@@ -19,7 +19,7 @@ class StatusController extends Controller
   public function store(Request $request)
   {
     $formFields = $request->validate([
-      'name' => ['required', 'min:3', Rule::unique('statuses', 'name')],
+      'name' => ['required', 'min:3', 'max:30', Rule::unique('statuses', 'name')],
     ]);
 
     Status::create(
@@ -41,7 +41,7 @@ class StatusController extends Controller
   public function update(Request $request, $id)
   {
     $formFields = $request->validate([
-      'name' => ['required', 'min:3', Rule::unique('statuses', 'name')],
+      'name' => ['required', 'min:3', 'max:30', Rule::unique('statuses', 'name')],
     ]);
 
     $status = Status::find($id);
@@ -51,7 +51,7 @@ class StatusController extends Controller
     return redirect('/statuses')->with('message', 'Статус успешно обновлен');
   }
 
-  public function delete($id)
+  public function destroy($id)
   {
     $status = Status::find($id);
 

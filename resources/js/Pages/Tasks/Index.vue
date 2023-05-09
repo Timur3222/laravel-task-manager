@@ -8,11 +8,13 @@ import dayjs from "dayjs";
 import Title from "@/Components/Title.vue";
 import Dialog from "primevue/dialog";
 
-defineProps({ tasks: Array, statuses: Array, users: Array });
+const props = defineProps({ tasks: Object, statuses: Array, users: Array });
 
 const toast = useToast();
 const message = computed(() => usePage().props.flash.message);
 const authUser = usePage().props.authUser;
+
+const pageLinks = computed(() => props.tasks.links);
 
 const dialogVisible = ref(false);
 const taskToDelete = ref(null);
@@ -112,7 +114,7 @@ if (message.value) {
         </Link>
     </div>
 
-    <div v-if="tasks.length">
+    <div v-if="tasks.data.length">
         <div
             class="mb-2 grid grid-cols-[40px_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] border-b-2 border-gray-400 font-semibold text-gray-600"
         >
@@ -124,15 +126,17 @@ if (message.value) {
             <div>Дата создания</div>
         </div>
         <div
-            v-for="(task, i) in tasks"
+            v-for="(task, i) in tasks.data"
             :key="i"
             class="mb-4 grid grid-cols-[40px_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)] border-b border-dashed border-gray-300 text-gray-600"
         >
             <div>{{ task.id }}</div>
             <div>{{ task.status }}</div>
-            <Link :href="`/tasks/${task.id}`" class="text-main hover:underline">{{
-                task.name
-            }}</Link>
+            <Link
+                :href="`/tasks/${task.id}`"
+                class="text-main hover:underline"
+                >{{ task.name }}</Link
+            >
             <div>
                 {{ users.find((user) => user.id === task.author_id).name }}
             </div>
@@ -158,6 +162,22 @@ if (message.value) {
                 </div>
             </div>
         </div>
+    </div>
+
+    <div v-if="pageLinks.length > 3" class="mt-7 flex justify-end gap-2">
+        <Link
+            v-for="(link, i) in pageLinks"
+            :key="i"
+            :href="link.url"
+            :class="{ hidden: !link.url }"
+        >
+            <Button
+                link
+                :style="{ boxShadow: link.active && '0 0 0 0.1rem #b7e0b8' }"
+            >
+                <span v-html="link.label"></span>
+            </Button>
+        </Link>
     </div>
 
     <Dialog

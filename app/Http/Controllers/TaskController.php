@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Status;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,10 @@ class TaskController extends Controller
 {
   public function index(Request $request)
   {
-    $tasks = Task::where($request->query())->get();
+    $tasks = Task::where(Arr::except($request->query(), ['page']))
+    ->latest()
+    ->paginate(10)
+    ->withQueryString();
     $statuses = Status::all();
     $users = User::all();
 
@@ -41,15 +45,14 @@ class TaskController extends Controller
   {
     $formFields = $request->validate([
       'status' => ['required'],
-      'name' => ['required', 'min:3', Rule::unique('tasks', 'name')],
-      'description' => ['min:6'],
+      'name' => ['required', 'min:3', 'max:30', Rule::unique('tasks', 'name')],
     ]);
 
     Task::create(
       [
         'status' => $formFields['status'],
         'name' => $formFields['name'],
-        'description' => $formFields['description'],
+        'description' => $request->input('description'),
         'author_id' => auth()->user()->id,
         'doer_id' => $request->input('doer_id'),
         'marks' => $request->collect('marks'),
@@ -73,13 +76,13 @@ class TaskController extends Controller
   {
     $formFields = $request->validate([
       'status' => ['required'],
-      'name' => ['required', 'min:3'],
-      'description' => ['min:6'],
+      'name' => ['required', 'min:3', 'max:30'],
     ]);
 
     $task = Task::find($id);
 
     $task->fill($formFields);
+    $task->description = $request->input('description');
     $task->doer_id = $request->input('doer_id');
     $task->marks = $request->collect('marks');
 
@@ -88,7 +91,7 @@ class TaskController extends Controller
     return redirect('/tasks')->with('message', 'Задача успешно обновлена');
   }
 
-  public function delete($id)
+  public function destroy($id)
   {
     $task = Task::find($id);
 

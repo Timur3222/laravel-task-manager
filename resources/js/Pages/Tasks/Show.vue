@@ -7,7 +7,9 @@ defineProps({ task: Object });
 <template>
     <Title class="mr-3 inline-block">{{ task.name }}</Title>
     <Link :href="`/tasks/${task.id}/edit`">
-        <span class="pi pi-file-edit !text-xl hover:text-main"></span>
+        <span
+            class="pi pi-file-edit !text-xl text-gray-600 hover:text-main"
+        ></span>
     </Link>
 
     <div class="space-y-2 text-gray-600">
