@@ -25,14 +25,14 @@ const emit = defineEmits(["update:modelValue"]);
             v-if="type === 'text'"
             :id="inputId"
             type="text"
-            :value="modelValue"
+            v-model="modelValue"
             :class="{ 'p-invalid': error }"
             @update:modelValue="emit('update:modelValue', $event)"
         />
         <Password
             v-if="type === 'password'"
             :id="inputId"
-            :value="modelValue"
+            v-model="modelValue"
             :inputProps="{ name: inputId }"
             :feedback="false"
             toggleMask
@@ -43,7 +43,7 @@ const emit = defineEmits(["update:modelValue"]);
         <Textarea
             v-if="type === 'textarea'"
             :id="inputId"
-            :value="modelValue"
+            v-model="modelValue"
             autoResize
             rows="5"
             cols="30"

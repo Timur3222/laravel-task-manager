@@ -88,6 +88,8 @@ if (message.value) {
         </div>
     </div>
 
+    <p v-else class="text-gray-600">Статусов нет</p>
+
     <Dialog
         v-model:visible="dialogVisible"
         modal

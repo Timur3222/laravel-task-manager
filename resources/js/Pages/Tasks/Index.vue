@@ -164,6 +164,8 @@ if (message.value) {
         </div>
     </div>
 
+    <p v-else class="text-gray-600">Задач нет</p>
+
     <div v-if="pageLinks.length > 3" class="mt-7 flex justify-center gap-2">
         <Link
             v-for="(link, i) in pageLinks"
