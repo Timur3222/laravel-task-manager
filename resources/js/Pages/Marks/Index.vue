@@ -90,7 +90,8 @@ if (message.value) {
         </div>
     </div>
 
-    <p v-else class="text-gray-600">Меток нет</p>
+    <p v-else-if="!authUser" class="text-gray-600">Меток нет. Войдите чтобы создать метки.</p>
+    <p v-else class="text-gray-600">Меток нет.</p>
 
     <Dialog
         v-model:visible="dialogVisible"

@@ -88,7 +88,8 @@ if (message.value) {
         </div>
     </div>
 
-    <p v-else class="text-gray-600">Статусов нет</p>
+    <p v-else-if="!authUser" class="text-gray-600">Статусов нет. Войдите чтобы создать статусы.</p>
+    <p v-else class="text-gray-600">Статусов нет.</p>
 
     <Dialog
         v-model:visible="dialogVisible"

@@ -164,7 +164,8 @@ if (message.value) {
         </div>
     </div>
 
-    <p v-else class="text-gray-600">Задач нет</p>
+    <p v-else-if="!authUser" class="text-gray-600">Задач нет. Войдите чтобы создать задачи.</p>
+    <p v-else class="text-gray-600">Задач нет.</p>
 
     <div v-if="pageLinks.length > 3" class="mt-7 flex justify-center gap-2">
         <Link

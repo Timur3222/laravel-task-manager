@@ -54,7 +54,7 @@ const authUser = computed(() => usePage().props.authUser);
         <div class="flex items-center justify-center gap-2 p-4 text-gray-600">
             <span>Тимурыч © 2023</span>
             <a href="https://github.com/Timur3222/laravel-task-manager" target="_blank">
-                <span class="pi pi-github hover:text-main"></span>
+                <span class="pi pi-github !text-xl hover:text-main"></span>
             </a>
         </div>
     </footer>
