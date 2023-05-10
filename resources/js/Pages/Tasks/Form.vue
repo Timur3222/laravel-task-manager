@@ -96,7 +96,7 @@ const form = useForm({
                 optionLabel="name"
                 optionValue="name"
                 placeholder="Выберите метки"
-                class="max-w-[400px]"
+                class="max-w-[400px] text-gray-600"
             />
         </div>
 
